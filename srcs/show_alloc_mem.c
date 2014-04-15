@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 10:18:18 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/15 17:58:41 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/15 22:47:59 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void					print_tiny(t_zone *current)
 	i = 0;
 	while (i < MAX_ALLOC)
 	{
-		if (current->size[i])
+		if (current->size[i] > 0)
 		{
 			ft_putaddress((unsigned long)&(current->data) + i * n, hexa);
 			ft_putstr(" - ");
@@ -41,7 +41,7 @@ void					print_small(t_zone *current)
 	i = 0;
 	while (i < MAX_ALLOC)
 	{
-		if (current->size[i])
+		if (current->size[i] > 0)
 		{
 			ft_putaddress((unsigned long)&(current->data) + i * m, hexa);
 			ft_putstr(" - ");
@@ -58,12 +58,15 @@ void					print_large(t_zone *current)
 {
 	char				*hexa = NULL;
 
-	ft_putaddress((unsigned long)&(current->data), hexa);
-	ft_putstr(" - ");
-	ft_putaddress((unsigned long)&(current->data)  + current->size[0] - 1, hexa);
-	ft_putstr(" : ");
-	ft_putnbr(current->size[0]);
-	ft_putendl(" octets");
+	if (current->size[0] > 0)
+	{
+		ft_putaddress((unsigned long)&(current->data), hexa);
+		ft_putstr(" - ");
+		ft_putaddress((unsigned long)&(current->data)  + current->size[0] - 1, hexa);
+		ft_putstr(" : ");
+		ft_putnbr(current->size[0]);
+		ft_putendl(" octets");
+	}
 }
 
 void					print_view(t_zone *current)

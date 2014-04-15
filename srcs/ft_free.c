@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 17:09:58 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/15 17:58:39 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/15 22:57:12 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 
 int							ptr_is_in_this_zone(void *ptr, t_zone *current)
 {
-	unsigned long long		
+	unsigned long long		min;
+	unsigned long long		max;
+	unsigned long long		check;
 
-	roof = NULL;
-	printf("%p\n", current);
-	if (current->type == LARGE)
-		roof = &(current->data) + (current->size[0] / 8);
+	check = (unsigned long long)ptr;
+	min = (unsigned long long)&(current->data);
+	if (current->type == TINY)
+		max = (unsigned long long)current + N * PAGE;
 	else if (current->type == SMALL)
-		roof = current + (M * PAGE / 8);
-	else if (current->type == TINY)
-		roof = current + (N * PAGE / 8);
-	if ((unsigned long long)ptr > (unsigned long long)current)
-		if ((unsigned long long)ptr < (unsigned long long)roof)
-			printf("%d\n", current->type);
+		max = (unsigned long long)current + M * PAGE;
+	else
+		max = (unsigned long long)current + current->size[0];
+	if (min <= check && check <= max)
+		return ((int)(check - min));
 	return (0);
 }
 
@@ -34,14 +35,23 @@ void						free(void *ptr)
 {
 	static t_zone			*ptr_free = NULL;
 	t_zone					*current;
+	int						ret;
 
 	if (!ptr_free)
 		ptr_free = get_malloc();
 	current = ptr_free;
 	while (42)
 	{
-		if (ptr_is_in_this_zone(ptr, current))
-			;//FREE THIS;
+		if ((ret = ptr_is_in_this_zone(ptr, current)))
+		{
+			if (current->type == TINY)
+				ret = ret / n;
+			else if (current->type == SMALL)
+				ret = ret / m;
+			else
+				ret = 0;
+			current->size[ret] = -1;
+		}
 		if (current->next)
 			current = current->next;
 		else
