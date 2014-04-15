@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   get_malloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:52:29 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/15 16:14:33 by jponcele         ###   ########.fr       */
+/*   Created: 2014/04/15 17:00:38 by jponcele          #+#    #+#             */
+/*   Updated: 2014/04/15 17:08:28 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_malloc.h>
 
-void		ft_bzero(void *to_set, size_t len)
+t_zone						*get_malloc(void)
 {
-	ft_memset(to_set, 0, len);
+	static t_zone			*ptr_malloc = NULL;
+
+	if (!ptr_malloc)
+		ptr_malloc = mmap(0, PAGE, PROT_WRITE | PROT_READ,
+				MAP_ANON | MAP_PRIVATE, -1, 0);
+	return (ptr_malloc);
 }

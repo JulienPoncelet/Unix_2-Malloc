@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:24:32 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/15 12:22:23 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/15 17:58:46 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 
 #include <stdio.h>
 
-# include <stdlib.h>
+# include <string.h>
 # include <unistd.h>
 # include <sys/mman.h>
-# include <sys/resource.h>
 
 # define PAGE getpagesize()
 
@@ -39,16 +38,28 @@ typedef struct				s_zone
 {
 	int						type;
 	int						index;
-	void					*tab[100];
-	int						free[100];
+	int						size[100];
 	struct s_zone			*next;
+	void					*data;
 }							t_zone;
 
 /*
 **							Ft_malloc.c
 */
 
-void						*ft_malloc(size_t size);
+void						*malloc(size_t size);
+
+/*
+**							Ft_free.c
+*/
+
+void						free(void *ptr);
+
+/*
+**							Get_malloc.c
+*/
+
+t_zone						*get_malloc(void);
 
 /*
 **							Adds.c
@@ -65,12 +76,21 @@ void						*add_large(t_zone *ptr_malloc, size_t size);
 void						show_alloc_mem(void);
 
 /*
+**							Change_index.
+*/
+
+int							change_index(t_zone *current);
+
+/*
 **							Libft
 */
 
 void						ft_putchar(char c);
 void						ft_putstr(char *str);
 void						ft_putendl(char *str);
+void						ft_putnbr(int nbr);
+void						ft_putnbrendl(int nbr);
+void						ft_putaddress(unsigned long nb, char *hex);
 size_t						ft_strlen(char *str);
 void						ft_bzero(void *to_set, size_t len);
 void						*ft_memset(void *to_set, int value, size_t len);

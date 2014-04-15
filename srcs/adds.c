@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 10:15:22 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/15 12:22:23 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/15 17:02:15 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void					*add_new_zone(t_zone *current, int type, size_t size)
 	i = 0;
 	while (i < MAX_ALLOC)
 	{
-		current->tab[i] = NULL;
-		current->free[i] = 1;
+		current->size[i] = 0;
 		i++;
 	}
 	ft_bzero(current, size);
@@ -33,48 +32,55 @@ void					*add_new_zone(t_zone *current, int type, size_t size)
 void					*add_tiny(t_zone *ptr_malloc, size_t size)
 {
 	t_zone				*current;
-	void				*ptr_added;
+	int					i;
 
 	current = ptr_malloc;
-	while (current->type != TINY && current->index < MAX_ALLOC)
+	while (current->type != TINY || current->index == MAX_ALLOC)
 	{
 		if (!current->next)
-			current->next = add_new_zone(current, TINY, N * PAGE);
+			current->next = add_new_zone(current->next, TINY, N * PAGE);
 		current = current->next;
 	}
-	ptr_added = NULL;
-	return (ptr_added);
-	(void)size;
+	i = 0;
+	while (current->size[i])
+		i++;
+	current->size[i] = size;
+	current->index = change_index(current);
+	return (&(current->data) + i * n / 8);
 }
 
 void					*add_small(t_zone *ptr_malloc, size_t size)
 {
 	t_zone				*current;
-	void				*ptr_added;
+	int					i;
 
 	current = ptr_malloc;
-	while (current->type != SMALL && current->index < MAX_ALLOC)
+	while (current->type != SMALL || current->index == MAX_ALLOC)
 	{
 		if (!current->next)
-			current->next = add_new_zone(current, SMALL, M * PAGE);
+			current->next = add_new_zone(current->next, SMALL, M * PAGE);
 		current = current->next;
 	}
-	ptr_added = NULL;
-	return (ptr_added);
-	(void)size;
+	i = 0;
+	while (current->size[i])
+		i++;
+	current->size[i] = size;
+	current->index = change_index(current);
+	return (&(current->data) + i * m / 8);
 }
 
 void					*add_large(t_zone *ptr_malloc, size_t size)
 {
 	t_zone				*current;
-	void				*ptr_added;
 
 	current = ptr_malloc;
 	while (current->next)
 		current = current->next;
-	current->next = add_new_zone(current, LARGE, size);
-	ptr_added = NULL;
-	return (ptr_added);
+	current->next = add_new_zone(current->next, LARGE, size);
+	current = current->next;
+	current->size[0] = size;
+	current->index = 1;
+	return (&(current->data));
 }
 
 

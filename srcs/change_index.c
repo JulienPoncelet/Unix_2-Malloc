@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   change_index.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:52:29 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/15 16:14:33 by jponcele         ###   ########.fr       */
+/*   Created: 2014/04/15 14:16:45 by jponcele          #+#    #+#             */
+/*   Updated: 2014/04/15 16:14:30 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_malloc.h>
 
-void		ft_bzero(void *to_set, size_t len)
+int							change_index(t_zone *current)
 {
-	ft_memset(to_set, 0, len);
+	int						i;
+
+	i = 0;
+	while (i < MAX_ALLOC)
+	{
+		if (current->size[i] == 0)
+			return (i);
+		i++;
+	}
+	return (i);
 }

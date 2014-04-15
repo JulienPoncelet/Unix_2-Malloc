@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_putnbrendl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:52:29 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/15 16:14:33 by jponcele         ###   ########.fr       */
+/*   Created: 2013/12/02 16:19:16 by jponcele          #+#    #+#             */
+/*   Updated: 2014/04/15 16:14:44 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_malloc.h>
 
-void		ft_bzero(void *to_set, size_t len)
+void				ft_putnbrendl(int nbr)
 {
-	ft_memset(to_set, 0, len);
+	ft_putnbr(nbr);
+	ft_putchar('\n');
 }

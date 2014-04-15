@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:20:39 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/15 12:22:23 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/15 17:58:47 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 int					main(void)
 {
-	char			**tab;
+	char			*tab1;
+	char			*tab2;
+	char			*tab3;
+	char			*tab4;
 
-	tab = ft_malloc(2);
-	tab = ft_malloc(100);
-	tab = ft_malloc(30);
-	tab = ft_malloc(200);
-	tab = ft_malloc(2200);
+	tab1 = malloc(10);
+	tab2 = malloc(32);
+	tab3 = malloc(12);
+	tab4 = malloc(5000);
+	free(tab4);
 	show_alloc_mem();
 	return (0);
 }
