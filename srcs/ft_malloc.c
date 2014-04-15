@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:13:28 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/14 17:41:17 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/15 12:22:23 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,31 @@
 
 void						*ft_malloc(size_t size)
 {
-//	static t_malloc			*malloc_page = NULL;
-	struct rlimit			rlp;
-	int						ret;
+	static int				step = 0;
+	static t_zone			*ptr_malloc = NULL;
+	void					*ptr_added;
 
-	ret = getrlimit(RLIMIT_MEMLOCK, &rlp);
-
-	unsigned long long		reserved_tiny;
-	unsigned long long		reserved_small;
-	unsigned long long		reserved_large;
-
-	reserved_tiny = TINY * PAGE;
-	reserved_small = SMALL * PAGE;
-	reserved_large = rlp.rlim_cur - reserved_tiny - reserved_small;
-
-	printf("%llu --- %llu\n", rlp.rlim_cur, rlp.rlim_max);
-	printf("%llu\n", reserved_tiny);
-	printf("%llu\n", reserved_small);
-	printf("%llu\n", reserved_large);
-
-/*	if (!malloc_page)
-		ft_init_malloc(&malloc_page);
-	if (malloc_page->test)
-		printf("%d\n", malloc_page->test);*/
-	return (NULL);
-	(void)size;
+	if (step == 0)
+	{
+		step = 1;
+		show_alloc_mem();
+		ft_bzero(ptr_malloc, PAGE);
+		ptr_malloc->type = TINY;
+	}
+	else if (step == 1)
+	{
+		step = 2;
+		ptr_malloc = (t_zone *)mmap(0, PAGE,
+				PROT_WRITE | PROT_READ, MAP_ANON | MAP_PRIVATE, -1, 0);
+		return (ptr_malloc);
+	}
+	if (!size)
+		return (NULL);
+	else if (size < n)
+		ptr_added = add_tiny(ptr_malloc, size);
+	else if (size < m)
+		ptr_added = add_small(ptr_malloc, size);
+	else
+		ptr_added = add_large(ptr_malloc, size);
+	return (ptr_added);
 }

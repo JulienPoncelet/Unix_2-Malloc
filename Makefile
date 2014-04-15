@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 15:44:25 by jponcele          #+#    #+#              #
-#    Updated: 2014/04/14 17:12:20 by jponcele         ###   ########.fr        #
+#    Updated: 2014/04/15 10:45:35 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,15 @@ DIRSRC = ./srcs/
 DIROBJ = ./obj/
 
 SRC = ft_malloc.c\
+	  show_alloc_mem.c\
+	  adds.c
 
 SRC += ft_putendl.c\
 	   ft_putchar.c\
 	   ft_putstr.c\
-	   ft_strlen.c
+	   ft_strlen.c\
+	   ft_bzero.c\
+	   ft_memset.c
 
 OBJ = $(SRC:.c=.o)
 
