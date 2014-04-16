@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:24:32 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 12:49:24 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 13:38:25 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void						ft_putstr(char *str);
 void						ft_putendl(char *str);
 void						ft_putnbr(int nbr);
 void						ft_putnbrendl(int nbr);
-void						ft_putaddress(unsigned long nb, char *hex);
+void						ft_putaddress(void *ptr);
 size_t						ft_strlen(char *str);
 void						ft_bzero(void *to_set, size_t len);
 void						*ft_memset(void *to_set, int value, size_t len);

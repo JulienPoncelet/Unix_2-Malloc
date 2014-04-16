@@ -6,48 +6,46 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 10:18:18 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 12:44:34 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 13:38:20 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
-void					print_tiny(t_zone *current)
+void					print_tiny(t_zone *cur)
 {
 	int					i;
-	char				*hexa = NULL;
 
 	i = 0;
 	while (i < MAX_ALLOC)
 	{
-		if (current->size[i] > 0)
+		if (cur->size[i] > 0)
 		{
-			ft_putaddress((unsigned long)&(current->data) + i * SMALL_N, hexa);
+			ft_putaddress(&(cur->data) + i * SMALL_N);
 			ft_putstr(" - ");
-			ft_putaddress((unsigned long)&(current->data) + i * SMALL_N + current->size[i] - 1, hexa);
+			ft_putaddress(&(cur->data) + i * SMALL_N + cur->size[i] - 1);
 			ft_putstr(" : ");
-			ft_putnbr(current->size[i]);
+			ft_putnbr(cur->size[i]);
 			ft_putendl(" octets");
 		}
 		i++;
 	}
 }
 
-void					print_small(t_zone *current)
+void					print_small(t_zone *cur)
 {
 	int					i;
-	char				*hexa = NULL;
 
 	i = 0;
 	while (i < MAX_ALLOC)
 	{
-		if (current->size[i] > 0)
+		if (cur->size[i] > 0)
 		{
-			ft_putaddress((unsigned long)&(current->data) + i * SMALL_M, hexa);
+			ft_putaddress(&(cur->data) + i * SMALL_M);
 			ft_putstr(" - ");
-			ft_putaddress((unsigned long)&(current->data) + i * SMALL_M + current->size[i] - 1, hexa);
+			ft_putaddress(&(cur->data) + i * SMALL_M + cur->size[i] - 1);
 			ft_putstr(" : ");
-			ft_putnbr(current->size[i]);
+			ft_putnbr(cur->size[i]);
 			ft_putendl(" octets");
 		}
 		i++;
@@ -56,13 +54,11 @@ void					print_small(t_zone *current)
 
 void					print_large(t_zone *current)
 {
-	char				*hexa = NULL;
-
 	if (current->size[0] > 0)
 	{
-		ft_putaddress((unsigned long)&(current->data), hexa);
+		ft_putaddress(&(current->data));
 		ft_putstr(" - ");
-		ft_putaddress((unsigned long)&(current->data)  + current->size[0] - 1, hexa);
+		ft_putaddress(&(current->data) + current->size[0] - 1);
 		ft_putstr(" : ");
 		ft_putnbr(current->size[0]);
 		ft_putendl(" octets");
@@ -71,15 +67,13 @@ void					print_large(t_zone *current)
 
 void					print_view(t_zone *current)
 {
-	char				*hexa = NULL;
-
 	if (current->type == TINY)
 		ft_putstr("TINY : ");
 	else if (current->type == SMALL)
 		ft_putstr("SMALL : ");
 	else
 		ft_putstr("LARGE : ");
-	ft_putaddress((unsigned long)current, hexa);
+	ft_putaddress(current);
 	ft_putchar('\n');
 	if (current->type == TINY)
 		print_tiny(current);

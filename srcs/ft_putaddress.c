@@ -5,53 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/04/15 13:07:16 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 12:49:20 by jponcele         ###   ########.fr       */
+/*   Created: 2014/04/16 13:21:50 by jponcele          #+#    #+#             */
+/*   Updated: 2014/04/16 13:37:31 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <ft_malloc.h>
 
-static void			ft_decimal_to_hexa(unsigned long nb, char *hex)
+void						ft_putaddress(void *ptr)
 {
-	int				i;
-	int				j;
-	static char		tab[] = "0123456789abcdef";
-	char			temp;
+	unsigned long long		llu_ptr;
+	static char				hexa_tab[] = "0123456789abcdef";
+	static char				hexa[10];
+	int						i;
 
-	j = 0;
-	while (nb > 15)
+	llu_ptr = (unsigned long long)ptr;
+	ft_bzero(hexa, 10);
+	i = 8;
+	while (llu_ptr)
 	{
-		i = nb % 16;
-		hex[j] = tab[i];
-		nb = nb / 16;
-		j++;
+		hexa[i] = hexa_tab[llu_ptr % 16];
+		llu_ptr = llu_ptr / 16;
+		i--;
 	}
-	hex[j] = tab[nb];
-	hex[j + 1] = '\0';
-	i = 0;
-	while (i <= j)
-	{
-		temp = hex[j];
-		hex[j] = hex[i];
-		hex[i] = temp;
-		i++;
-		j--;
-	}
-}
-
-void				ft_putaddress(void *ptr)
-{
-	unsigned long	a;
-	char			str[20];
-
-	a = (unsigned long)ptr;
-	ft_decimal_to_hexa(a, str);
-	write(1, "0x", 2);
-	a = 0;
-	while (str[a] != '\0')
-	{
-		write(1, str + a, 1);
-		a++;
-	}
+	ft_putstr("0x");
+	ft_putstr(hexa);
 }
