@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:24:32 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/15 17:58:46 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 12:40:45 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct				s_zone
 {
 	int						type;
 	int						index;
-	int						size[100];
+	int						size[MAX_ALLOC];
 	struct s_zone			*next;
 	void					*data;
 }							t_zone;
@@ -54,6 +54,12 @@ void						*malloc(size_t size);
 */
 
 void						free(void *ptr);
+
+/*
+**							FT_realloc.c
+*/
+
+void						*realloc(void *ptr, size_t size);
 
 /*
 **							Get_malloc.c
@@ -76,10 +82,16 @@ void						*add_large(t_zone *ptr_malloc, size_t size);
 void						show_alloc_mem(void);
 
 /*
-**							Change_index.
+**							Change_index.c
 */
 
 int							change_index(t_zone *current);
+
+/*
+**							Found_inter.c
+*/
+
+int							found_inter(void *ptr, t_zone *current);
 
 /*
 **							Libft

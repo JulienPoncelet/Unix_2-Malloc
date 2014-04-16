@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 15:44:25 by jponcele          #+#    #+#              #
-#    Updated: 2014/04/16 10:20:12 by jponcele         ###   ########.fr        #
+#    Updated: 2014/04/16 12:03:08 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,12 @@ DIROBJ = ./obj/
 
 SRC = ft_malloc.c\
 	  ft_free.c\
-	  get_malloc.c\
+	  ft_realloc.c\
 	  show_alloc_mem.c\
+	  get_malloc.c\
 	  adds.c\
-	  change_index.c
+	  change_index.c\
+	  found_inter.c
 
 SRC += ft_putendl.c\
 	   ft_putchar.c\

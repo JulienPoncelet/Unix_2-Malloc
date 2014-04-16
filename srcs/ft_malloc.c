@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:13:28 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/15 17:58:43 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 12:09:53 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void						*malloc(size_t size)
 		ft_bzero(ptr_malloc, PAGE);
 		ptr_malloc->type = TINY;
 	}
-	if (!size)
+	if (size <= 0)
 		return (NULL);
 	else if (size < n)
 		return (add_tiny(ptr_malloc, size));

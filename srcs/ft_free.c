@@ -6,30 +6,11 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 17:09:58 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 10:19:58 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 12:16:15 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_malloc.h>
-
-int							ptr_is_in_this_zone(void *ptr, t_zone *current)
-{
-	unsigned long long		min;
-	unsigned long long		max;
-	unsigned long long		check;
-
-	check = (unsigned long long)ptr;
-	min = (unsigned long long)&(current->data);
-	if (current->type == TINY)
-		max = (unsigned long long)current + N * PAGE;
-	else if (current->type == SMALL)
-		max = (unsigned long long)current + M * PAGE;
-	else
-		max = (unsigned long long)current + current->size[0];
-	if (min <= check && check <= max)
-		return ((int)(check - min));
-	return (-1);
-}
 
 int							free_large(t_zone *ptr_free)
 {
@@ -70,7 +51,7 @@ void						free(void *ptr)
 	current = ptr_free;
 	while (42)
 	{
-		if ((ret = ptr_is_in_this_zone(ptr, current)) != -1)
+		if ((ret = found_inter(ptr, current)) != -1)
 		{
 			if (current->type == TINY)
 				ret = ret / n;
