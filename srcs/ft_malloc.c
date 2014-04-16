@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:13:28 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 12:43:11 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 14:00:09 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void						*malloc(size_t size)
 {
 	static t_zone			*ptr_malloc = NULL;
+	struct rlimit			rlp;
 
 	if (!ptr_malloc)
 	{
@@ -24,7 +25,11 @@ void						*malloc(size_t size)
 	}
 	if (size <= 0)
 		return (NULL);
-	else if (size < SMALL_N)
+	getrlimit(RLIMIT_MEMLOCK, &rlp);
+	if (ptr_malloc->total + size > rlp.rlim_cur)
+		return (NULL);
+	ptr_malloc->total = ptr_malloc->total + size;
+	if (size < SMALL_N)
 		return (add_tiny(ptr_malloc, size));
 	else if (size < SMALL_M)
 		return (add_small(ptr_malloc, size));

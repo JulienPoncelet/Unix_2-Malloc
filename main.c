@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:20:39 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 13:37:26 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 13:58:05 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int					main(void)
 	tab5 = malloc(32);
 	tab6 = malloc(32);
 	tab7 = malloc(6000);
+	show_alloc_mem();
 	free(tab5);
 	free(tab4);
 	tab7 = malloc(7000);

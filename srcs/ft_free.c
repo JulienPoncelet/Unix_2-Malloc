@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 17:09:58 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 12:48:21 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 14:00:10 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void						free(void *ptr)
 		if ((ret = found_inter(ptr, current)) != -1)
 		{
 			ret = modif_ret(ret, current);
+			ptr_free->total = ptr_free->total - current->size[ret];
 			current->size[ret] = 0;
 			if (current->type == LARGE)
 				if (free_large(ptr_free) == 42)

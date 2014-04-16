@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 10:18:18 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 13:38:20 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 14:00:07 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,7 @@ void					show_alloc_mem(void)
 		else
 			break ;
 	}
+	ft_putstr("Total : ");
+	ft_putnbr(ptr_view->total);
+	ft_putendl(" octets");
 }
