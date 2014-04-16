@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:20:39 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/15 22:57:16 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 10:19:58 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,11 @@ int					main(void)
 	tab4 = malloc(5000);
 	tab5 = malloc(32);
 	tab6 = malloc(32);
+	tab7 = malloc(6000);
 	show_alloc_mem();
-int i = 0;
-
 	free(tab5);
-while (i < 30)
-	tab5[i++] = 'a';
-	printf("%s\n", tab5);
-	tab7 = malloc(42);
+	free(tab4);
+	tab7 = malloc(7000);
 	show_alloc_mem();
 	return (0);
 }
