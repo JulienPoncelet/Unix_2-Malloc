@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 17:09:58 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 12:16:15 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 12:48:21 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,17 @@ int							free_large(t_zone *ptr_free)
 	return (0);
 }
 
+int							modif_ret(int ret, t_zone *current)
+{
+	if (current->type == TINY)
+		ret = ret / SMALL_N;
+	else if (current->type == SMALL)
+		ret = ret / SMALL_M;
+	else
+		ret = 0;
+	return (ret);
+}
+
 void						free(void *ptr)
 {
 	static t_zone			*ptr_free = NULL;
@@ -53,20 +64,14 @@ void						free(void *ptr)
 	{
 		if ((ret = found_inter(ptr, current)) != -1)
 		{
-			if (current->type == TINY)
-				ret = ret / n;
-			else if (current->type == SMALL)
-				ret = ret / m;
-			else
-				ret = 0;
+			ret = modif_ret(ret, current);
 			current->size[ret] = 0;
 			if (current->type == LARGE)
 				if (free_large(ptr_free) == 42)
 					return ;
 		}
-		if (current->next)
-			current = current->next;
-		else
+		if (!current->next)
 			break ;
+		current = current->next;
 	}
 }

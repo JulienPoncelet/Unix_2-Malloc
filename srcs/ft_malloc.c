@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:13:28 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 12:09:53 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 12:43:11 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void						*malloc(size_t size)
 	}
 	if (size <= 0)
 		return (NULL);
-	else if (size < n)
+	else if (size < SMALL_N)
 		return (add_tiny(ptr_malloc, size));
-	else if (size < m)
+	else if (size < SMALL_M)
 		return (add_small(ptr_malloc, size));
 	else
 		return (add_large(ptr_malloc, size));

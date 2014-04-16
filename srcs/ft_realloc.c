@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 10:21:15 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 12:40:31 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 12:43:59 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void		*ft_realloc(t_zone *all, void *ptr, t_zone *current, size_t size)
 	int						new_type;
 	int						ret;
 
-	if (size < n)
+	if (size < SMALL_N)
 		new_type = TINY;
-	else if (size < m)
+	else if (size < SMALL_M)
 		new_type = SMALL;
 	else
 		new_type = LARGE;
@@ -36,9 +36,9 @@ void		*ft_realloc(t_zone *all, void *ptr, t_zone *current, size_t size)
 	{
 		ret = found_inter(ptr, current);
 		if (new_type == TINY)
-			ret = ret / n;
+			ret = ret / SMALL_N;
 		else if (new_type == SMALL)
-			ret = ret / m;
+			ret = ret / SMALL_M;
 		else
 			ret = 0;
 		current->size[ret] = size;

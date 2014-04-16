@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 13:07:16 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/15 16:14:38 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 12:49:20 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void			ft_decimal_to_hexa(unsigned long nb, char *hex)
 {
 	int				i;
 	int				j;
-	char			tab[] = "0123456789abcdef";
+	static char		tab[] = "0123456789abcdef";
 	char			temp;
 
 	j = 0;
@@ -45,7 +45,7 @@ void				ft_putaddress(void *ptr)
 	unsigned long	a;
 	char			str[20];
 
-	a = (unsigned long) ptr;
+	a = (unsigned long)ptr;
 	ft_decimal_to_hexa(a, str);
 	write(1, "0x", 2);
 	a = 0;

@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 10:15:22 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 10:19:58 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 12:45:20 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void					*add_tiny(t_zone *ptr_malloc, size_t size)
 		i++;
 	current->size[i] = size;
 	current->index = change_index(current);
-	return (&(current->data) + i * n / 8);
+	return (&(current->data) + i * SMALL_N / 8);
 }
 
 void					*add_small(t_zone *ptr_malloc, size_t size)
@@ -66,7 +66,7 @@ void					*add_small(t_zone *ptr_malloc, size_t size)
 		i++;
 	current->size[i] = size;
 	current->index = change_index(current);
-	return (&(current->data) + i * m / 8);
+	return (&(current->data) + i * SMALL_M / 8);
 }
 
 void					*add_large(t_zone *ptr_malloc, size_t size)
@@ -82,5 +82,3 @@ void					*add_large(t_zone *ptr_malloc, size_t size)
 	current->index = 1;
 	return (&(current->data));
 }
-
-

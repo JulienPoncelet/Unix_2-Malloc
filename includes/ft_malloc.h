@@ -6,14 +6,12 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:24:32 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 12:40:45 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 12:49:24 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MALLOC_H
 # define FT_MALLOC_H
-
-#include <stdio.h>
 
 # include <string.h>
 # include <unistd.h>
@@ -21,8 +19,8 @@
 
 # define PAGE getpagesize()
 
-# define n 32
-# define m 304
+# define SMALL_N 32
+# define SMALL_M 304
 
 # define N (unsigned long long)1
 # define M (unsigned long long)8
@@ -31,7 +29,7 @@
 
 enum						e_type_zone
 {
-	TINY, SMALL , LARGE
+	TINY, SMALL, LARGE
 };
 
 typedef struct				s_zone

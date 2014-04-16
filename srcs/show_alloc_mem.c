@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 10:18:18 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 10:19:58 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/16 12:44:34 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void					print_tiny(t_zone *current)
 	{
 		if (current->size[i] > 0)
 		{
-			ft_putaddress((unsigned long)&(current->data) + i * n, hexa);
+			ft_putaddress((unsigned long)&(current->data) + i * SMALL_N, hexa);
 			ft_putstr(" - ");
-			ft_putaddress((unsigned long)&(current->data) + i * n + current->size[i] - 1, hexa);
+			ft_putaddress((unsigned long)&(current->data) + i * SMALL_N + current->size[i] - 1, hexa);
 			ft_putstr(" : ");
 			ft_putnbr(current->size[i]);
 			ft_putendl(" octets");
@@ -43,9 +43,9 @@ void					print_small(t_zone *current)
 	{
 		if (current->size[i] > 0)
 		{
-			ft_putaddress((unsigned long)&(current->data) + i * m, hexa);
+			ft_putaddress((unsigned long)&(current->data) + i * SMALL_M, hexa);
 			ft_putstr(" - ");
-			ft_putaddress((unsigned long)&(current->data) + i * m + current->size[i] - 1, hexa);
+			ft_putaddress((unsigned long)&(current->data) + i * SMALL_M + current->size[i] - 1, hexa);
 			ft_putstr(" : ");
 			ft_putnbr(current->size[i]);
 			ft_putendl(" octets");
