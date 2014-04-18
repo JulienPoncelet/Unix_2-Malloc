@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 17:09:58 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/18 10:57:07 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/18 14:48:28 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int						free_large(t_zone *current, t_zone *current_prev)
 		return (42);
 	}
 	return (0);
-
 }
 
 int						free_tiny_small(t_zone *all, t_zone *cur, t_zone *prev)
@@ -58,8 +57,10 @@ int						free_map(t_zone *ptr_free)
 				return (42);
 		}
 		else
+		{
 			if (free_tiny_small(ptr_free, current, current_prev) == 42)
 				return (42);
+		}
 		if (current->next)
 		{
 			current_prev = current;

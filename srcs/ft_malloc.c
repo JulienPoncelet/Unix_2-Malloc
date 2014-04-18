@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:13:28 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/18 10:45:44 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/18 14:45:43 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void						*malloc(size_t size)
 	}
 	if (size <= 0)
 		return (NULL);
-	getrlimit(RLIMIT_MEMLOCK, &rlp);
-	if (ptr_malloc->total + size > rlp.rlim_cur)
+	getrlimit(RLIMIT_STACK, &rlp);
+	if (ptr_malloc->total + size >= rlp.rlim_cur)
 		return (NULL);
 	ptr_malloc->total = ptr_malloc->total + size;
 	if (size < SMALL_N)

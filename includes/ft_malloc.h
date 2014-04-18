@@ -6,14 +6,12 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:24:32 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/18 10:57:09 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/18 14:49:04 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MALLOC_H
 # define FT_MALLOC_H
-
-#include <stdio.h>
 
 # include <string.h>
 # include <unistd.h>
@@ -40,8 +38,8 @@ typedef struct				s_zone
 	int						type;
 	int						index;
 	rlim_t					total;
-	int						size[MAX_ALLOC];
-	int						tmp_size;
+	size_t					size[MAX_ALLOC];
+	size_t					tmp_size;
 	struct s_zone			*next;
 	void					*data;
 }							t_zone;
@@ -103,7 +101,7 @@ int							found_inter(void *ptr, t_zone *current);
 void						ft_putchar(char c);
 void						ft_putstr(char *str);
 void						ft_putendl(char *str);
-void						ft_putnbr(int nbr);
+void						ft_putnbr(size_t nbr);
 void						ft_putnbrendl(int nbr);
 void						ft_putaddress(void *ptr);
 size_t						ft_strlen(char *str);
