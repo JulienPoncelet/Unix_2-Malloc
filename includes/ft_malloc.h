@@ -6,12 +6,14 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:24:32 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 14:00:13 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/18 10:57:09 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MALLOC_H
 # define FT_MALLOC_H
+
+#include <stdio.h>
 
 # include <string.h>
 # include <unistd.h>
@@ -39,6 +41,7 @@ typedef struct				s_zone
 	int						index;
 	rlim_t					total;
 	int						size[MAX_ALLOC];
+	int						tmp_size;
 	struct s_zone			*next;
 	void					*data;
 }							t_zone;

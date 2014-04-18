@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 10:15:22 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 12:45:20 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/18 10:55:50 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void					*add_large(t_zone *ptr_malloc, size_t size)
 	current = ptr_malloc;
 	while (current->next)
 		current = current->next;
-	current->next = add_new_zone(current->next, LARGE, size);
+	current->next = add_new_zone(current->next, LARGE, size + sizeof(t_zone));
 	current = current->next;
 	current->size[0] = size;
 	current->index = 1;

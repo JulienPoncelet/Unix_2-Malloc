@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 15:44:25 by jponcele          #+#    #+#              #
-#    Updated: 2014/04/16 12:03:08 by jponcele         ###   ########.fr        #
+#    Updated: 2014/04/18 10:52:52 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ fclean: clean
 re: fclean all
 
 test: re
-	@$(CC) $(CFLAGS) -o test main.c -L . $(NAME) $(HEAD)
+	@$(CC) $(CFLAGS) -o test main.c -L . $(NAME) $(HEAD) -g
 	@./test
 	@rm -rf ./test ./test.dSYM/
 

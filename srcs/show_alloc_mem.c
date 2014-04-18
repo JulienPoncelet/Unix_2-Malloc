@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 10:18:18 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 14:00:07 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/18 10:57:12 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void					print_tiny(t_zone *cur)
 	{
 		if (cur->size[i] > 0)
 		{
-			ft_putaddress(&(cur->data) + i * SMALL_N);
+			ft_putaddress(&(cur->data) + i * SMALL_N / 8);
 			ft_putstr(" - ");
-			ft_putaddress(&(cur->data) + i * SMALL_N + cur->size[i] - 1);
+			ft_putaddress(&(cur->data) + (i + 1) * SMALL_N / 8 );
 			ft_putstr(" : ");
 			ft_putnbr(cur->size[i]);
 			ft_putendl(" octets");
@@ -41,9 +41,9 @@ void					print_small(t_zone *cur)
 	{
 		if (cur->size[i] > 0)
 		{
-			ft_putaddress(&(cur->data) + i * SMALL_M);
+			ft_putaddress(&(cur->data) + i * SMALL_M / 8);
 			ft_putstr(" - ");
-			ft_putaddress(&(cur->data) + i * SMALL_M + cur->size[i] - 1);
+			ft_putaddress(&(cur->data) + (i + 1) * SMALL_M / 8);
 			ft_putstr(" : ");
 			ft_putnbr(cur->size[i]);
 			ft_putendl(" octets");
@@ -58,7 +58,7 @@ void					print_large(t_zone *current)
 	{
 		ft_putaddress(&(current->data));
 		ft_putstr(" - ");
-		ft_putaddress(&(current->data) + current->size[0] - 1);
+		ft_putaddress(&(current->data) + current->size[0] / 8);
 		ft_putstr(" : ");
 		ft_putnbr(current->size[0]);
 		ft_putendl(" octets");
