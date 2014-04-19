@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 15:44:25 by jponcele          #+#    #+#              #
-#    Updated: 2014/04/18 10:52:52 by jponcele         ###   ########.fr        #
+#    Updated: 2014/04/19 18:21:10 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ SRC += ft_putendl.c\
 	   ft_putaddress.c\
 	   ft_strlen.c\
 	   ft_bzero.c\
-	   ft_memset.c
+	   ft_memset.c\
+	   ft_memcpy.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/04/14 10:20:39 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/19 18:22:22 by jponcele         ###   ########.fr       */
+/*   Created: 2013/11/19 18:04:46 by jponcele          #+#    #+#             */
+/*   Updated: 2014/04/19 18:20:02 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_malloc.h>
 
-int					main(void)
+void				*ft_memcpy(void *dst, const void *src, size_t len)
 {
-	char			*tab1 = NULL;
-	int				i = 0;
+	char			*p_dst;
+	char			*p_src;
+	size_t			k;
 
-	show_alloc_mem();
-	free(tab1);
-	tab1 = malloc(10);
-	show_alloc_mem();
-	while (i < 10)
-		tab1[i++] = '2';
-	tab1 = realloc(tab1, 42);
-	show_alloc_mem();
-	ft_putendl(tab1);
-	return (0);
+	if (!dst || !src || !len)
+		return (dst);
+	p_dst = (char*)dst;
+	p_src = (char*)src;
+	k = 0;
+	while (k < len)
+	{
+		p_dst[k] = p_src[k];
+		k++;
+	}
+	return (dst);
 }

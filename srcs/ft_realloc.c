@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 10:21:15 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/16 12:43:59 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/19 18:22:24 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void		*new_zone(t_zone *all, void *ptr, t_zone *current, size_t size)
 	void					*new_ptr;
 
 	new_ptr = malloc(size);
+	ft_memcpy(new_ptr, ptr, size);
 	free(ptr);
 	return (new_ptr);
 }

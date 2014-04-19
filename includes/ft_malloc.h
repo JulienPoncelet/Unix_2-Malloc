@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:24:32 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/18 14:49:04 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/19 18:22:26 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ void						ft_putaddress(void *ptr);
 size_t						ft_strlen(char *str);
 void						ft_bzero(void *to_set, size_t len);
 void						*ft_memset(void *to_set, int value, size_t len);
+void						*ft_memcpy(void *dst, const void *src, size_t len);
 
 #endif
