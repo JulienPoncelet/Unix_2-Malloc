@@ -6,14 +6,14 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/14 10:24:32 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/19 18:22:26 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/20 17:07:24 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MALLOC_H
 # define FT_MALLOC_H
 
-# include <string.h>
+# include <stdlib.h>
 # include <unistd.h>
 # include <sys/mman.h>
 # include <sys/resource.h>

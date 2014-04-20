@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 10:21:15 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/19 18:22:24 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/20 17:07:29 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void		*ft_realloc(t_zone *all, void *ptr, t_zone *current, size_t size)
 			ret = ret / SMALL_M;
 		else
 			ret = 0;
+		all->total = all->total - current->size[ret] + size;
 		current->size[ret] = size;
 		return (ptr);
 	}
@@ -53,7 +54,7 @@ void		*realloc(void *ptr, size_t size)
 {
 	static t_zone			*ptr_realloc = NULL;
 	t_zone					*current;
-	int						ret;
+	int						ret = 0;
 
 	if (size <= 0)
 		return (NULL);
