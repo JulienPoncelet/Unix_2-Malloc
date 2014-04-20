@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 10:21:15 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/20 17:07:29 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/04/20 17:13:27 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void		*new_zone(t_zone *all, void *ptr, t_zone *current, size_t size)
 	ft_memcpy(new_ptr, ptr, size);
 	free(ptr);
 	return (new_ptr);
+	(void)all;
+	(void)current;
 }
 
 void		*ft_realloc(t_zone *all, void *ptr, t_zone *current, size_t size)
@@ -54,7 +56,7 @@ void		*realloc(void *ptr, size_t size)
 {
 	static t_zone			*ptr_realloc = NULL;
 	t_zone					*current;
-	int						ret = 0;
+	int						ret;
 
 	if (size <= 0)
 		return (NULL);

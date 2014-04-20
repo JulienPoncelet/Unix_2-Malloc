@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 15:44:25 by jponcele          #+#    #+#              #
-#    Updated: 2014/04/19 18:21:10 by jponcele         ###   ########.fr        #
+#    Updated: 2014/04/20 17:13:06 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ OBJ = $(SRC:.c=.o)
 DIROBJS = $(addprefix $(DIROBJ), $(OBJ))
 
 CC = clang
-CFLAGS = -Wall -Werror -fpic
+CFLAGS = -Wall -Werror -Wextra -fpic
 
 AR = ar
 ARFLAGS = -rc
